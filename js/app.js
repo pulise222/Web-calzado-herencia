@@ -20,9 +20,9 @@ const EN = {
   'nav.historia': 'Story', 'nav.coleccion': 'Collection', 'nav.proceso': 'Process', 'nav.pedir': 'Order',
   'hero.sobre': '100% Colombian footwear · Made in Bogotá',
   'hero.h1': 'Tradition<br>that <em>walks</em><br>with you',
-  'hero.lead': 'Leather shoes with one-of-a-kind designs. Handmade just for you, starting the moment you place your order.',
-  'hero.cta': 'Pre-order yours', 'hero.ver': 'See designs →', 'hero.sello': 'Handmade · Bogotá ·',
-  'cinta.1': 'Handmade', 'cinta.2': 'Colombian leather', 'cinta.3': 'Made to order', 'cinta.4': 'Shipping to Colombia & the USA',
+  'hero.lead': 'Leather shoes with exclusive designs. Made only to order, so your pair is yours alone.',
+  'hero.cta': 'Pre-order yours', 'hero.ver': 'See designs →', 'hero.sello': 'Exclusive design · Bogotá ·',
+  'cinta.1': 'Exclusive designs', 'cinta.2': '100% Colombian', 'cinta.3': 'Made to order', 'cinta.4': 'Shipping to Colombia & the USA',
   'historia.sobre': 'Our heritage',
   'col.sobre': 'The collection', 'col.h2': 'Designs that<br>never repeat', 'col.desliza': 'Scroll to see more',
   'col.pedir': 'Order this design', 'col.quiero': 'I want mine', 'col.idea': 'Tell us<br>your idea',
@@ -34,7 +34,7 @@ const EN = {
   'pr.sobre': 'How it works', 'pr.h2': 'From order<br>to your feet',
   'pr.1.t': 'You choose', 'pr.1.p': 'Pick one of the designs or tell us your idea.',
   'pr.2.t': 'We confirm', 'pr.2.p': 'We talk about your size, colors and delivery date.',
-  'pr.3.t': 'We craft', 'pr.3.p': 'Cut and assembled by hand, only your pair.',
+  'pr.3.t': 'We craft', 'pr.3.p': 'We start making your pair: only yours, no one else will have the same.',
   'pr.4.t': 'It arrives', 'pr.4.p': 'We ship anywhere in Colombia and to the United States.',
   'pe.sobre': 'Pre-order', 'pe.h2': 'Tell us<br>which one you want',
   'pe.lead': 'Fill this in and WhatsApp opens with your message ready. We’ll reply to confirm size, colors and date.',
@@ -56,15 +56,15 @@ const EN = {
 /* Textos que no están en el HTML. En la frase animada, lo que va entre *asteriscos* se resalta en dorado. */
 const TEXTOS = {
   es: {
-    palabras: 'Hay zapatos que se usan y zapatos que *se heredan*. Los nuestros se hacen despacio, *a mano*, para quedarse contigo.',
+    palabras: 'Hay zapatos que se usan y zapatos que *se heredan*. Los nuestros nacen *por pedido*, con diseños *exclusivos*, para quedarse contigo.',
     titulo: 'Herencia · Calzado en cuero hecho en Bogotá',
     mensaje: (n, d, t, nota) => `Hola Herencia, quiero pre-ordenar un par.\nDiseño: ${d}\nTalla: ${t || 'por confirmar'}${nota ? `\nIdea/colores: ${nota}` : ''}\nMi nombre: ${n}`,
     faltaNombre: 'Escribe tu nombre para continuar.',
     abriendo: 'Abriendo WhatsApp…',
   },
   en: {
-    palabras: 'Some shoes are worn, and some shoes are *handed down*. Ours are made slowly, *by hand*, to stay with you.',
-    titulo: 'Herencia · Handmade leather shoes from Bogotá',
+    palabras: 'Some shoes are worn, and some shoes are *handed down*. Ours are made *to order*, with *exclusive* designs, to stay with you.',
+    titulo: 'Herencia · Exclusive leather shoes from Bogotá',
     mensaje: (n, d, t, nota) => `Hi Herencia, I'd like to pre-order a pair.\nDesign: ${d}\nSize: ${t || 'to be confirmed'}${nota ? `\nIdea/colors: ${nota}` : ''}\nMy name: ${n}`,
     faltaNombre: 'Please enter your name to continue.',
     abriendo: 'Opening WhatsApp…',
@@ -141,6 +141,21 @@ const barra = document.getElementById('barra')
 const pasos = document.getElementById('pasos')
 const cab = document.getElementById('cab')
 
+/* Galería: el alto de las fotos se calcula con lo que REALMENTE ocupa lo demás (título, nombre, botón y barra),
+   así todo cabe en el alto de la pantalla sin importar el ancho, el idioma ni la letra. */
+const sticky = document.querySelector('.pin-sticky')
+function ajustarAlto() {
+  const cs = getComputedStyle(sticky)
+  const gap = parseFloat(cs.rowGap) || 0
+  const rest = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)
+  const cabH = sticky.querySelector('.col-cab').offsetHeight
+  const p = riel.querySelector('.pieza')
+  const textoH = p.querySelector('.leyenda').offsetHeight + p.querySelector('.elegir').offsetHeight + 10
+  const barraH = barra.parentElement.offsetHeight
+  const libre = innerHeight - rest - cabH - textoH - barraH - gap * 2 - 16
+  sticky.style.setProperty('--alto', `${Math.round(Math.min(560, Math.max(170, libre)))}px`)
+}
+
 function actualizar() {
   const vh = innerHeight
   const y = scrollY
@@ -168,6 +183,7 @@ function actualizar() {
 
   // Galería horizontal: el scroll vertical la desplaza hacia el lado
   if (escritorio()) {
+    ajustarAlto()
     const recorrido = riel.scrollWidth - innerWidth + parseFloat(getComputedStyle(riel).paddingRight)
     pin.style.height = `${recorrido + vh}px`
     const r = pin.getBoundingClientRect()
@@ -218,3 +234,4 @@ document.getElementById('anio').textContent = new Date().getFullYear()
 aplicarIdioma(inicial)
 actualizar()
 addEventListener('load', actualizar)
+if (document.fonts) document.fonts.ready.then(actualizar)
