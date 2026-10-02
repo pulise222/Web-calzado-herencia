@@ -1,0 +1,217 @@
+/* ===================================================================
+   HERENCIA · estilos
+   Mezcla: base editorial crema (opción A) + secciones oscuras en verde
+   cuero y galería horizontal (opción B).
+   =================================================================== */
+:root {
+  --crema: #f6efe6;
+  --crema-2: #efe3d4;
+  --cafe: #3b2a22;
+  --suave: #8a6f5f;
+  --rosa: #e7b9a6;
+  --oro: #b8935a;
+  --oro-claro: #d2ad72;
+  --salvia: #2f3b2d;            /* el verde ahora es solo un toque pequeño */
+  --marfil: #f1e8d8;
+  /* Secciones de contraste (Historia, Proceso, Pie). Variante por defecto: «vino rosado» */
+  --sec-bg: #4a2b30; --sec-tx: #f6e9e1; --sec-su: #d6b9b1; --sec-ac: #dcb67e; --sec-linea: rgba(246, 233, 225, .14); --sec-velo: 58, 32, 36;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Jost", system-ui, sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --pad: clamp(20px, 6vw, 96px);
+}
+
+/* Variante B: secciones en rosa palo, letra café y dorado más profundo (se activa con ?tema=claro) */
+body.tema-claro { --sec-bg: #efcdc0; --sec-tx: #3b2a22; --sec-su: #7b5a52; --sec-ac: #9c7133; --sec-linea: rgba(59, 42, 34, .16); --sec-velo: 239, 205, 192; }
+body.tema-claro .historia-fondo { opacity: .28; }
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); font-weight: 400; background: var(--crema); color: var(--cafe); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
+
+.sobre { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--suave); }
+.sobre.claro { color: var(--sec-ac); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1; }
+.lead { color: var(--suave); max-width: 430px; }
+
+/* ---------- Botones y enlaces ---------- */
+.btn { display: inline-block; padding: 16px 32px; border: 1px solid var(--cafe); font-size: 12px; letter-spacing: .24em; text-transform: uppercase; background: transparent; cursor: pointer; transition: background .4s, color .4s; }
+.btn:hover { background: var(--cafe); color: var(--crema); }
+.btn.lleno { background: var(--cafe); color: var(--crema); width: 100%; margin-top: 8px; }
+.btn.lleno:hover { background: var(--oro); border-color: var(--oro); }
+.enlace { font-size: 13px; letter-spacing: .14em; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+/* ---------- Aparición al hacer scroll ---------- */
+.rev { opacity: 0; transform: translateY(36px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.rev.ok { opacity: 1; transform: none; }
+.d1 { transition-delay: .12s; } .d2 { transition-delay: .24s; } .d3 { transition-delay: .36s; }
+
+/* ---------- Encabezado ---------- */
+.cab { position: fixed; z-index: 40; inset: 0 0 auto 0; display: flex; justify-content: space-between; align-items: center; padding: 22px var(--pad); transition: background .4s, padding .4s, box-shadow .4s, color .4s; }
+.cab.fondo { background: rgba(246, 239, 230, .86); backdrop-filter: blur(14px); padding-block: 14px; box-shadow: 0 1px 0 rgba(59, 42, 34, .1); }
+.cab.sobre-oscuro { color: var(--sec-tx); }
+.cab.sobre-oscuro.fondo { background: color-mix(in srgb, var(--sec-bg) 86%, transparent); box-shadow: 0 1px 0 var(--sec-linea); }
+.cab.sobre-oscuro .btn-mini:hover { background: var(--sec-tx); color: var(--sec-bg); }
+.marca { font: 500 24px var(--serif); letter-spacing: .34em; }
+.menu { display: flex; align-items: center; gap: 30px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
+.menu a { position: relative; }
+.menu a:not(.btn-mini)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.menu a:hover::after { transform: scaleX(1); }
+.btn-mini { padding: 10px 20px; border: 1px solid currentColor; transition: background .3s, color .3s; }
+.btn-mini:hover { background: var(--cafe); color: var(--crema); }
+
+/* Botón de idioma ES · EN */
+.idioma { display: inline-flex; gap: 6px; padding: 8px 12px; border: 1px solid currentColor; border-radius: 999px; background: transparent; cursor: pointer; font-size: 12px; letter-spacing: .16em; }
+.idioma span { opacity: .45; transition: opacity .3s; } .idioma span.activo { opacity: 1; font-weight: 500; } .idioma i { font-style: normal; opacity: .4; }
+
+/* ---------- Portada ---------- */
+.portada { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 4vw; padding: 130px var(--pad) 70px; }
+.portada .sobre { margin-bottom: 26px; }
+.portada h1 { font-size: clamp(54px, 8vw, 120px); letter-spacing: -.012em; line-height: .94; }
+.portada h1 em { color: var(--oro); font-style: italic; }
+.portada .lead { margin: 28px 0 38px; }
+.acciones { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+.portada-foto { position: relative; height: min(78vh, 740px); }
+.arco { position: absolute; inset: 0 0 0 12%; border-radius: 999px 999px 0 0; overflow: hidden; }
+.arco img { width: 100%; height: 118%; object-fit: cover; will-change: transform; }
+.mini { position: absolute; left: 0; bottom: 6%; width: 38%; aspect-ratio: 3/4; border: 8px solid var(--crema); overflow: hidden; box-shadow: 0 24px 50px rgba(59, 42, 34, .26); animation: flota 7s ease-in-out infinite; }
+.mini img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes flota { 50% { transform: translateY(-14px); } }
+.sello { position: absolute; right: -2%; top: 8%; width: 118px; height: 118px; border-radius: 50%; background: var(--crema); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(59, 42, 34, .15); animation: gira 22s linear infinite; }
+.sello span { font: italic 500 15px var(--serif); text-align: center; padding: 18px; line-height: 1.2; color: var(--oro); }
+@keyframes gira { to { transform: rotate(360deg); } }
+
+/* ---------- Cinta de palabras ---------- */
+.cinta { overflow: hidden; white-space: nowrap; padding: 20px 0; border-block: 1px solid rgba(59, 42, 34, .14); font: italic 400 26px var(--serif); color: var(--suave); }
+.cinta div { display: inline-flex; gap: 46px; animation: cinta 34s linear infinite; padding-right: 46px; }
+.cinta i { font-style: normal; font-size: 11px; color: var(--oro); align-self: center; }
+@keyframes cinta { to { transform: translateX(-50%); } }
+
+/* ---------- Historia ---------- */
+.historia { position: relative; min-height: 120vh; display: grid; place-items: center; overflow: hidden; background: var(--sec-bg); color: var(--sec-tx); }
+.historia-fondo { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; object-fit: cover; opacity: .55; will-change: transform; }
+.historia-velo { position: absolute; inset: 0; background: radial-gradient(80% 70% at 50% 50%, rgba(var(--sec-velo), .55), rgba(var(--sec-velo), .94)); }
+.historia-cont { position: relative; z-index: 2; max-width: 1020px; padding: 18vh var(--pad); text-align: center; }
+.palabras { margin-top: 30px; font: 400 clamp(30px, 4.4vw, 58px)/1.22 var(--serif); }
+.palabras span { opacity: .18; transition: opacity .5s ease, color .5s ease; }
+.palabras span.on { opacity: 1; }
+.palabras span.on.oro { color: var(--sec-ac); font-style: italic; }
+
+/* ---------- Colección (galería horizontal pegada al hacer scroll) ---------- */
+.coleccion { background: var(--crema); }
+.pin { position: relative; }
+/* El alto de las fotos se calcula con el alto de la pantalla, para que todo (título, fotos, leyenda y barra) quepa
+   sin cortarse aunque la ventana sea baja. */
+.pin-sticky { --alto: clamp(190px, calc(100vh - 330px), 560px); position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: clamp(12px, 2.4vh, 28px); padding-top: 64px; padding-bottom: 14px; }
+.col-cab { padding: 0 var(--pad); display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.col-cab h2 { font-size: clamp(32px, min(5.4vw, 8.5vh), 78px); margin-top: 8px; }
+.peq { font-size: 13px; letter-spacing: .1em; color: var(--suave); }
+.flecha { display: inline-block; animation: vaiven 1.6s ease-in-out infinite; }
+@keyframes vaiven { 50% { transform: translateX(7px); } }
+.riel { display: flex; gap: clamp(18px, 2.4vw, 34px); padding: 0 var(--pad); will-change: transform; }
+.pieza { flex: 0 0 auto; width: calc(var(--alto) * .8); }
+.pieza .foto { height: var(--alto); width: 100%; overflow: hidden; border-radius: 3px; background: var(--crema-2); }
+.pieza .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.pieza:hover .foto img { transform: scale(1.06); }
+.leyenda { display: flex; justify-content: space-between; align-items: end; padding-top: 14px; }
+.leyenda h3 { font-size: clamp(22px, 3.4vh, 30px); }
+.leyenda small { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--suave); }
+.elegir { margin-top: 10px; padding: 0; border: 0; background: none; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--oro); border-bottom: 1px solid transparent; cursor: pointer; transition: border-color .3s, letter-spacing .3s; }
+.elegir:hover { border-color: var(--oro); letter-spacing: .26em; }
+.propia .foto { background: var(--salvia); display: grid; place-items: center; }
+.propia-int { text-align: center; color: var(--marfil); }
+.propia-int span { font: 400 74px var(--serif); color: var(--oro-claro); letter-spacing: .04em; }
+.propia-int p { font: italic 400 24px var(--serif); line-height: 1.2; margin-top: 8px; }
+.barra { margin: 0 var(--pad); height: 2px; background: rgba(59, 42, 34, .14); }
+.barra i { display: block; height: 100%; width: 100%; background: var(--oro); transform: scaleX(0); transform-origin: left; }
+
+/* ---------- Proceso (claro, con color: manchas suaves y tarjetas con foto) ---------- */
+.proceso { position: relative; overflow: hidden; padding: 130px var(--pad) 150px; background: linear-gradient(180deg, var(--crema) 0%, #fbeee6 55%, #f7e3d9 100%); }
+.mancha { position: absolute; border-radius: 50%; filter: blur(10px); pointer-events: none; }
+.proceso .m1 { width: 38vw; height: 38vw; background: #f1c9bd; top: -12vw; right: -10vw; opacity: .8; animation: respira 10s ease-in-out infinite; }
+.proceso .m2 { width: 26vw; height: 26vw; background: #dfe5d2; bottom: -8vw; left: -6vw; animation: respira 12s ease-in-out infinite reverse; }
+.proceso .m3 { width: 16vw; height: 16vw; background: #ecd5a8; top: 38%; left: 46%; opacity: .5; animation: respira 14s ease-in-out infinite; }
+@keyframes respira { 50% { transform: scale(1.1) translate(12px, -12px); } }
+.proceso-cab, .pasos { position: relative; z-index: 1; }
+.proceso-cab h2 { font-size: clamp(42px, 5.6vw, 84px); margin-top: 12px; }
+.pasos { list-style: none; padding: 0; margin-top: 70px; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 30px); align-items: start; }
+.paso { padding: 14px 14px 30px; border-radius: 30px; transition: transform .5s var(--ease), box-shadow .5s; box-shadow: 0 14px 34px rgba(74, 47, 47, .08); }
+.paso:nth-child(2) { margin-top: 44px; } .paso:nth-child(4) { margin-top: 44px; }
+.paso:hover { transform: translateY(-10px) !important; box-shadow: 0 26px 50px rgba(74, 47, 47, .16); }
+.c1 { background: #f4cfc3; } .c2 { background: #e3e9d6; } .c3 { background: #f2e1bf; } .c4 { background: #eebcad; }
+.paso-foto { position: relative; aspect-ratio: 4/5; border-radius: 22px 22px 120px 22px; overflow: hidden; margin-bottom: 20px; }
+.paso:nth-child(even) .paso-foto { border-radius: 22px 22px 22px 120px; }
+.paso-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.paso:hover .paso-foto img { transform: scale(1.08); }
+.paso-foto b { position: absolute; top: 14px; left: 14px; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--crema); color: var(--cafe); font: 500 18px var(--serif); box-shadow: 0 6px 16px rgba(0, 0, 0, .15); }
+.paso h3 { font-size: 34px; margin: 0 8px 8px; }
+.paso p { margin: 0 8px; color: #6e514b; font-size: 15px; line-height: 1.55; }
+
+/* ---------- Pedir ---------- */
+.pedir { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; padding: 130px var(--pad); }
+.pedir-foto { border-radius: 999px 999px 4px 4px; overflow: hidden; aspect-ratio: 4/5; }
+.pedir-foto img { width: 100%; height: 118%; object-fit: cover; will-change: transform; }
+.pedir h2 { font-size: clamp(40px, 5vw, 70px); margin: 12px 0 18px; }
+form { margin-top: 30px; display: grid; gap: 18px; max-width: 480px; }
+label { display: grid; gap: 6px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--suave); }
+input, select, textarea { padding: 13px 0; border: 0; border-bottom: 1px solid rgba(59, 42, 34, .3); background: transparent; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--cafe); border-radius: 0; }
+input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--oro); }
+textarea { resize: vertical; }
+.dos { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+.aviso { min-height: 22px; font-size: 14px; color: var(--suave); }
+
+/* ---------- Pie ---------- */
+.pie { background: var(--sec-bg); color: var(--sec-tx); padding: 70px var(--pad) 36px; display: grid; gap: 30px; grid-template-columns: 1fr auto; align-items: end; }
+.pie-marca strong { display: block; font: 500 30px var(--serif); letter-spacing: .34em; }
+.pie-marca span { font: italic 400 18px var(--serif); color: var(--sec-su); }
+.pie-datos { display: grid; gap: 6px; text-align: right; font-size: 14px; color: var(--sec-su); }
+.pie-datos a { color: var(--sec-ac); }
+.pie-copia { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--sec-linea); font-size: 12px; color: var(--sec-su); opacity: .8; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .menu a:not(.btn-mini) { display: none; }
+  .portada { grid-template-columns: 1fr; padding-top: 110px; }
+  .portada-foto { height: 60vh; }
+  .sello { width: 90px; height: 90px; right: 0; } .sello span { font-size: 12px; padding: 12px; }
+  /* En celular la galería no se "pega": se desliza con el dedo */
+  .pin { height: auto !important; }
+  .pin-sticky { position: static; height: auto; padding: 90px 0 60px; --alto: min(420px, 62vh); }
+  .riel { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; transform: none !important; scrollbar-width: none; }
+  .riel::-webkit-scrollbar { display: none; }
+  .pieza { width: min(74vw, calc(var(--alto) * .8)); scroll-snap-align: center; }
+  .barra { display: none; }
+  .pasos { grid-template-columns: 1fr 1fr; }
+  .paso:nth-child(n) { margin-top: 0; } .paso:nth-child(even) { margin-top: 36px; }
+  .pedir { grid-template-columns: 1fr; padding-block: 90px; }
+  .pedir-foto { aspect-ratio: 5/4; border-radius: 300px 300px 4px 4px; }
+  .pie { grid-template-columns: 1fr; } .pie-datos { text-align: left; }
+}
+/* Pantallas táctiles: zonas de toque de al menos ~44 px (enlaces y botones de texto eran muy bajitos) */
+@media (max-width: 900px) {
+  .marca { display: inline-block; padding: 12px 0; }
+  .enlace { display: inline-block; padding: 14px 0 12px; }
+  .elegir { padding: 14px 0 12px; }
+  .idioma { min-height: 40px; }
+  .pie-datos a { display: inline-block; padding: 10px 0; }
+  .btn-mini { padding: 11px 16px; }
+}
+@media (max-width: 520px) {
+  .pasos { grid-template-columns: 1fr; }
+  .paso:nth-child(n) { margin-top: 0; }
+  .dos { grid-template-columns: 1fr; }
+  .marca { font-size: 17px; letter-spacing: .2em; }
+  .menu { gap: 10px; } .btn-mini { padding: 8px 14px; } .idioma { padding: 7px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rev { opacity: 1; transform: none; }
+  .palabras span { opacity: 1; }
+  .pin { height: auto !important; } .pin-sticky { position: static; height: auto; padding: 90px 0 60px; }
+  .riel { overflow-x: auto; transform: none !important; }
+}

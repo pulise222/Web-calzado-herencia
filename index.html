@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Herencia · Calzado en cuero hecho en Bogotá</title>
+<meta name="description" content="Herencia: calzado 100% colombiano en cuero, hecho a mano en Bogotá y solo por pedido. Diseños únicos, envíos a Colombia y Estados Unidos.">
+<meta name="theme-color" content="#f6efe6">
+<meta property="og:title" content="Herencia · Tradición que camina contigo">
+<meta property="og:description" content="Calzado en cuero hecho a mano en Bogotá, solo por pedido. Colombia y Estados Unidos.">
+<meta property="og:image" content="https://pulise222.github.io/Web-calzado-herencia/img/rosa-palo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- Los textos tienen data-i18n: el español vive aquí (sirve sin JavaScript y para buscadores) y el inglés en js/app.js -->
+
+<!-- ============ Encabezado ============ -->
+<header class="cab" id="cab">
+  <a class="marca" href="#inicio" aria-label="Herencia">HERENCIA</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="#historia" data-i18n="nav.historia">Historia</a>
+    <a href="#coleccion" data-i18n="nav.coleccion">Colección</a>
+    <a href="#proceso" data-i18n="nav.proceso">Proceso</a>
+    <a class="btn-mini" href="#pedir" data-i18n="nav.pedir">Pedir</a>
+    <button class="idioma" id="idioma" type="button" aria-label="Cambiar idioma / Change language"><span data-l="es">ES</span><i>·</i><span data-l="en">EN</span></button>
+  </nav>
+</header>
+
+<main>
+<!-- ============ Portada ============ -->
+<section class="portada" id="inicio">
+  <div class="portada-texto">
+    <p class="sobre rev" data-i18n="hero.sobre">Calzado 100% colombiano · Hecho en Bogotá</p>
+    <h1 class="rev d1" data-i18n-html="hero.h1">Tradición<br>que <em>camina</em><br>contigo</h1>
+    <p class="lead rev d2" data-i18n="hero.lead">Zapatos en cuero con diseños únicos. Se fabrican a mano, solo para ti, desde el momento en que haces tu pedido.</p>
+    <div class="acciones rev d3">
+      <a class="btn" href="#pedir" data-i18n="hero.cta">Pre-ordena los tuyos</a>
+      <a class="enlace" href="#coleccion" data-i18n="hero.ver">Ver diseños →</a>
+    </div>
+  </div>
+  <div class="portada-foto rev d2">
+    <div class="arco"><img data-par="0.06" src="img/cafe.jpg" data-i18n-alt="alt.cafe" alt="Pies con zapatos oxford de cuero rosa palo junto a una taza de café"></div>
+    <div class="mini"><img src="img/jardin.jpg" data-i18n-alt="alt.jardin" alt="Oxford crema con bordado de flores"></div>
+    <div class="sello" aria-hidden="true"><span data-i18n="hero.sello">Hecho a mano · Bogotá ·</span></div>
+  </div>
+</section>
+
+<div class="cinta" aria-hidden="true"><div>
+  <span data-i18n="cinta.1">Hecho a mano</span><i>◆</i><span data-i18n="cinta.2">Cuero colombiano</span><i>◆</i><span data-i18n="cinta.3">Solo por pedido</span><i>◆</i><span data-i18n="cinta.4">Envíos a Colombia y Estados Unidos</span><i>◆</i>
+  <span data-i18n="cinta.1">Hecho a mano</span><i>◆</i><span data-i18n="cinta.2">Cuero colombiano</span><i>◆</i><span data-i18n="cinta.3">Solo por pedido</span><i>◆</i><span data-i18n="cinta.4">Envíos a Colombia y Estados Unidos</span><i>◆</i>
+</div></div>
+
+<!-- ============ Historia (oscura) ============ -->
+<section class="historia" id="historia">
+  <img class="historia-fondo" data-par="0.12" src="img/horma-cuero.jpg" alt="">
+  <div class="historia-velo"></div>
+  <div class="historia-cont">
+    <p class="sobre claro" data-i18n="historia.sobre">Nuestra herencia</p>
+    <p class="palabras" id="palabras"></p>
+  </div>
+</section>
+
+<!-- ============ Colección: galería que avanza con el scroll ============ -->
+<section class="coleccion" id="coleccion">
+  <div class="pin" id="pin">
+    <div class="pin-sticky">
+      <div class="col-cab">
+        <div>
+          <p class="sobre" data-i18n="col.sobre">La colección</p>
+          <h2 data-i18n-html="col.h2">Diseños que no<br>se repiten</h2>
+        </div>
+        <p class="peq"><span data-i18n="col.desliza">Desliza para ver más</span> <span class="flecha">→</span></p>
+      </div>
+      <div class="riel" id="riel">
+        <article class="pieza">
+          <div class="foto"><img src="img/champan.jpg" data-i18n-alt="alt.champan" alt="Oxford crema con detalles champán y rosa" loading="lazy"></div>
+          <div class="leyenda"><h3 data-i18n="d.champan">Champán</h3><small data-i18n="d.champan.t">Brogue · cuero</small></div>
+          <button class="elegir" data-diseno="champan" data-i18n="col.pedir">Pedir este diseño</button>
+        </article>
+        <article class="pieza">
+          <div class="foto"><img src="img/jardin.jpg" data-i18n-alt="alt.jardin" alt="Oxford crema con bordado de flores" loading="lazy"></div>
+          <div class="leyenda"><h3 data-i18n="d.jardin">Jardín</h3><small data-i18n="d.jardin.t">Bordado floral</small></div>
+          <button class="elegir" data-diseno="jardin" data-i18n="col.pedir">Pedir este diseño</button>
+        </article>
+        <article class="pieza">
+          <div class="foto"><img src="img/rosa-palo.jpg" data-i18n-alt="alt.rosa" alt="Oxford rosa palo sobre tela blanca con flores" loading="lazy"></div>
+          <div class="leyenda"><h3 data-i18n="d.rosa">Rosa palo</h3><small data-i18n="d.rosa.t">Clásico · cuero</small></div>
+          <button class="elegir" data-diseno="rosa" data-i18n="col.pedir">Pedir este diseño</button>
+        </article>
+        <article class="pieza">
+          <div class="foto"><img src="img/marino.jpg" data-i18n-alt="alt.marino" alt="Oxford azul marino, celeste y blanco" loading="lazy"></div>
+          <div class="leyenda"><h3 data-i18n="d.marino">Marino</h3><small data-i18n="d.marino.t">Tres tonos</small></div>
+          <button class="elegir" data-diseno="marino" data-i18n="col.pedir">Pedir este diseño</button>
+        </article>
+        <article class="pieza propia">
+          <div class="foto"><div class="propia-int"><span>HR</span><p data-i18n-html="col.idea">Cuéntanos<br>tu idea</p></div></div>
+          <div class="leyenda"><h3 data-i18n="d.propio">El tuyo</h3><small data-i18n="d.propio.t">Diseño a tu medida</small></div>
+          <button class="elegir" data-diseno="propio" data-i18n="col.quiero">Quiero el mío</button>
+        </article>
+      </div>
+      <div class="barra" aria-hidden="true"><i id="barra"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Proceso: tarjetas de colores con una foto por paso ============ -->
+<section class="proceso" id="proceso">
+  <span class="mancha m1" aria-hidden="true"></span><span class="mancha m2" aria-hidden="true"></span><span class="mancha m3" aria-hidden="true"></span>
+  <div class="proceso-cab rev">
+    <p class="sobre" data-i18n="pr.sobre">Cómo funciona</p>
+    <h2 data-i18n-html="pr.h2">Del pedido<br>a tus pies</h2>
+  </div>
+  <ol class="pasos" id="pasos">
+    <li class="paso c1 rev">
+      <div class="paso-foto"><img src="img/champan-cenital.jpg" alt="" loading="lazy"><b>01</b></div>
+      <h3 data-i18n="pr.1.t">Eliges</h3><p data-i18n="pr.1.p">Escoge uno de los diseños o cuéntanos tu idea.</p>
+    </li>
+    <li class="paso c2 rev d1">
+      <div class="paso-foto"><img src="img/banca.jpg" alt="" loading="lazy"><b>02</b></div>
+      <h3 data-i18n="pr.2.t">Confirmamos</h3><p data-i18n="pr.2.p">Hablamos de tu talla, los colores y la fecha de entrega.</p>
+    </li>
+    <li class="paso c3 rev d2">
+      <div class="paso-foto"><img src="img/horma-cuero.jpg" alt="" loading="lazy"><b>03</b></div>
+      <h3 data-i18n="pr.3.t">Fabricamos</h3><p data-i18n="pr.3.p">Se corta y se arma a mano, únicamente tu par.</p>
+    </li>
+    <li class="paso c4 rev d3">
+      <div class="paso-foto"><img src="img/rosa-palo.jpg" alt="" loading="lazy"><b>04</b></div>
+      <h3 data-i18n="pr.4.t">Te llega</h3><p data-i18n="pr.4.p">Lo enviamos a cualquier lugar de Colombia y a Estados Unidos.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ Pedir ============ -->
+<section class="pedir" id="pedir">
+  <div class="pedir-foto rev"><img data-par="0.05" src="img/rosa-palo.jpg" data-i18n-alt="alt.pedir" alt="Oxford rosa palo con cordones crema" loading="lazy"></div>
+  <div class="pedir-form rev d1">
+    <p class="sobre" data-i18n="pe.sobre">Pre-orden</p>
+    <h2 data-i18n-html="pe.h2">Cuéntanos<br>cuál quieres</h2>
+    <p class="lead" data-i18n="pe.lead">Llena esto y se abre WhatsApp con tu mensaje listo. Te respondemos para confirmar talla, colores y fecha.</p>
+    <form id="form" novalidate>
+      <label><span data-i18n="pe.diseno">Diseño</span>
+        <select id="f-diseno" name="diseno">
+          <option value="champan" data-i18n="d.champan">Champán</option>
+          <option value="jardin" data-i18n="d.jardin">Jardín</option>
+          <option value="rosa" data-i18n="d.rosa">Rosa palo</option>
+          <option value="marino" data-i18n="d.marino">Marino</option>
+          <option value="propio" data-i18n="pe.propio">Mi propio diseño</option>
+        </select>
+      </label>
+      <div class="dos">
+        <label><span data-i18n="pe.nombre">Tu nombre</span><input id="f-nombre" name="nombre" autocomplete="name" data-i18n-ph="pe.nombre.ph" placeholder="Ej. María"></label>
+        <label><span data-i18n="pe.talla">Talla</span><input id="f-talla" name="talla" inputmode="numeric" data-i18n-ph="pe.talla.ph" placeholder="Ej. 37"></label>
+      </div>
+      <label><span data-i18n="pe.nota">Colores o idea (opcional)</span><textarea id="f-nota" name="nota" rows="3" data-i18n-ph="pe.nota.ph" placeholder="Ej. En azul con dorado, para un matrimonio en diciembre"></textarea></label>
+      <button class="btn lleno" type="submit" data-i18n="pe.enviar">Enviar por WhatsApp</button>
+      <p class="aviso" id="aviso" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ============ Pie ============ -->
+<footer class="pie">
+  <div class="pie-marca"><strong>HERENCIA</strong><span data-i18n="pie.lema">Tradición que camina contigo</span></div>
+  <div class="pie-datos">
+    <a href="https://www.instagram.com/calzadoherencia/" target="_blank" rel="noopener">Instagram · @calzadoherencia</a>
+    <span data-i18n="pie.datos">Hecho en Bogotá · Envíos a Colombia y Estados Unidos</span>
+  </div>
+  <p class="pie-copia">© <span id="anio"></span> Herencia. <span data-i18n="pie.copia">Calzado 100% colombiano.</span></p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
